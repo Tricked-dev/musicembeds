@@ -19,6 +19,11 @@ app.use('*', cors({
 }))
 app.use("*", logger());
 
+app.use("*", async (c, next) => {
+  c.header("Vary", "Origin")
+  await next();
+})
+
 const fontPath = join(process.cwd(), "assets", "Roboto-Regular.ttf");
 const fontData = await readFile(fontPath);
 
