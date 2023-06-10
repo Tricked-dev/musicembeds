@@ -30,6 +30,15 @@ const fontData = await readFile(fontPath);
 const game = {
   lastUpdated: Date.now(),
   data: undefined as any
+  // data: {
+  //   title: "A epic vidja",
+  //   thumbnail: "https://i.ytimg.com/vi/VYOjWnS4cMY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3niLRYwOlsS6IhmL1yhITqg965rQg",
+  //   artist: "Eminem",
+  //   duration: {
+  //     at: 2000,
+  //     end: 10000,
+  //   }
+  // }
 }
 
 app.get("/", (c) => {
@@ -80,6 +89,7 @@ app.get("/.svg", async (c) => {
         width: "100%",
       }}
     >
+
       <img
         style={{
           borderRadius: "10px",
@@ -87,7 +97,7 @@ app.get("/.svg", async (c) => {
           width: "100%",
           objectFit: "cover",
           position: "absolute",
-          boxShadow: "inset 0px 0px 40px 40px rgba(0, 0, 0, 0.8)",
+          boxShadow: "inset 0px 0px 50px 50px rgba(0, 0, 0, 0.6)",
         }}
         height={230}
         width={500}
@@ -99,19 +109,17 @@ app.get("/.svg", async (c) => {
         style={{
           display: "flex",
           flexDirection: "column",
-          marginLeft: "10px",
+          marginLeft: "20px",
           height: "100%",
           width: "100%",
           justifyContent: "center",
           position: "absolute",
         }}
       >
-        <a href={data.videoId?.youtube ? `https://www.youtube.com/watch?v=${data.videoId?.youtube}` : `https://tricked.dev`} target="_blank">
-          <p style={{ color: "white", margin: "0", fontSize: "25px" }}>
-            {data.title ?? "Currently not playing anything"}
-          </p>
-        </a>
-        <p style={{ color: "whitesmoke", margin: "0" }}>{data.artist ?? "Tricked-dev"}</p>
+        <p href={data.videoId?.youtube ? `https://www.youtube.com/watch?v=${data.videoId?.youtube}` : `https://tricked.dev`} style={{ color: "white", margin: "0", fontSize: "25px", textShadow: "1px 1px 2px black" }}>
+          {data.title ?? "Currently not playing anything"}
+        </p>
+        <p style={{ color: "whitesmoke", margin: "0", textShadow: "1px 1px 2px black" }}>{data.artist ?? "Tricked-dev"}</p>
       </div>
       <div
         style={{
@@ -123,26 +131,27 @@ app.get("/.svg", async (c) => {
           color: "white",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: "10px",
-            width: "100%",
-            height: "10px",
-            backgroundColor: "gray",
-            borderRadius: "5px",
-            border: "none",
-            overflow: "hidden",
-          }}
-        />
 
         <div
           style={{
             position: "absolute",
             top: "10px",
+            width: "100%",
+            height: "7px",
+            backgroundColor: "gray",
+            borderRadius: "5px",
+            border: "none",
+            overflow: "hidden",
+            boxShadow: "12px 12px 2px 1px rgba(0, 0, 255, .2);"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "10px",
             width: `${Math.max((at / data.duration.end) * 100, 1) | 0}%`,
-            height: "10px",
-            backgroundColor: "red",
+            height: "7px",
+            backgroundColor: "white",
             borderRadius: "5px",
             border: "none",
             overflow: "hidden",
