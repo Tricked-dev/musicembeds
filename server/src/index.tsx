@@ -62,6 +62,9 @@ app.get("/.svg", async (c) => {
     game.data = undefined;
   }
 
+
+  const at = game.data?.at ?? 0 + (Date.now() - game.lastUpdated) / 100;
+
   let data = game.data ?? { duration: {} }
 
   const svg = await satori(
@@ -136,7 +139,7 @@ app.get("/.svg", async (c) => {
           style={{
             position: "absolute",
             top: "10px",
-            width: `${Math.max((data.duration.at / data.duration.end) * 100, 1) | 0}%`,
+            width: `${Math.max((at / data.duration.end) * 100, 1) | 0}%`,
             height: "10px",
             backgroundColor: "red",
             borderRadius: "5px",
@@ -162,7 +165,7 @@ app.get("/.svg", async (c) => {
 
   return c.text(svg, 200, {
     "Content-Type": "image/svg+xml",
-    "Cache-Control": "max-age=5",
+    "Cache-Control": "max-age=2",
   });
 });
 
