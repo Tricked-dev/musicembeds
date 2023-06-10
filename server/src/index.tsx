@@ -63,9 +63,10 @@ app.get("/.svg", async (c) => {
   }
 
 
-  const at = (game.data?.at ?? 0) + ((Date.now() - game.lastUpdated) / 100);
 
   let data = game.data ?? { duration: {} }
+
+  const at = (data.duration.at ?? 0) + ((Date.now() - game.lastUpdated) / 100);
 
   const svg = await satori(
     <div
