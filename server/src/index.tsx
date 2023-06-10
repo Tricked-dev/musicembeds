@@ -67,15 +67,13 @@ app.post("/", async (c) => {
 })
 
 app.get("/.svg", async (c) => {
-  if (game.lastUpdated + 1e3 * 60 * 5 < Date.now()) {
-    game.data = undefined;
-  }
-
-
-
   let data = game.data ?? { duration: {} }
 
   const at = (data.duration.at ?? 0) + ((Date.now() - game.lastUpdated) / 1000);
+
+  if (at > data.duration.end) {
+    data = { duration: {} }; game.data = undefined;
+  }
 
   const svg = await satori(
     <div
@@ -116,7 +114,7 @@ app.get("/.svg", async (c) => {
           position: "absolute",
         }}
       >
-        <p href={data.videoId?.youtube ? `https://www.youtube.com/watch?v=${data.videoId?.youtube}` : `https://tricked.dev`} style={{ color: "white", margin: "0", fontSize: "25px", textShadow: "1px 1px 2px black" }}>
+        <p style={{ color: "white", margin: "0", fontSize: "25px", textShadow: "1px 1px 2px black" }}>
           {data.title ?? "Currently not playing anything"}
         </p>
         <p style={{ color: "whitesmoke", margin: "0", textShadow: "1px 1px 2px black" }}>{data.artist ?? "Tricked-dev"}</p>
