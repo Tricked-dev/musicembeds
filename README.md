@@ -1,10 +1,11 @@
 # Music embeds
 
-yeah idk
+Cool embeds from currently playing youtube music deploying isnt quite as simple yet more info comming soon maybe
 
 this is how it looks
 
-<INSERT IMAGE>
+![image](https://github.com/Tricked-dev/musicembeds/assets/72335827/41bae01b-462a-425e-b371-7a7780f61553)
+
 
 view it on https://tricked.pro
 
